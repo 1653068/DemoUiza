@@ -1,0 +1,73 @@
+<div id='player'></div>
+
+<script>
+    // 3. This code creates an UIZA player, and return the player for the callback
+    UZ.Player.init(
+        '#player', // player element, exp: #element_id, .element_class
+        {
+            api: btoa('uap-a92a4506195d429b8bd992abfa7b93e0-efbeefc1'),
+            appId: 'a92a4506195d429b8bd992abfa7b93e0',
+            playerId: 'iframe-90458b03-d0c2-4e4d-a88c-06462fb032d4', // option
+            playerVersion: 4, // you are using the newest player, the version is: 3
+            entityId: '90458b03-d0c2-4e4d-a88c-06462fb032d4',
+            width: '100%', // player width, percentage or pixel, exp: '400px'
+            height: '100%', // player height, percentage or pixel, exp: '200px'
+        },
+        function (player) {
+            // 4. You can add logo at here
+            // 5. You can add event listeners at here
+            player.on('play', function () {
+                console.log('play');
+            });
+            player.on('pause', function () {
+                console.log('pause');
+            });
+
+            // 6. Floating
+            // return element position from top of document
+            var getElementOffsetTop = function (el) {
+                var boundingClientRect = el.getBoundingClientRect();
+                var bodyEl = document.body;
+                var docEl = document.documentElement;
+                var scrollTop = window.pageYOffset || docEl.scrollTop || bodyEl.scrollTop;
+                var clientTop = docEl.clientTop || bodyEl.clientTop || 0;
+                return Math.round(boundingClientRect.top + scrollTop - clientTop);
+            }
+
+            // return the scroll top distance
+            var getScrollTop = function () {
+                var docEl = document.documentElement;
+                return (window.pageYOffset || docEl.scrollTop) - (docEl.clientTop || 0);
+            }
+
+            // get player element position from top of document
+            var playerOffsetTop = getElementOffsetTop(document.getElementById('player'));
+            // get player height
+            var playerHeight = document.getElementById('player').clientHeight;
+            // determine player display when scroll event is called
+            // if inline player is no longer visible in viewport, add class
+            // .player-minimize to minimize and float. otherwise, remove the class to put
+            // player back to inline inline position
+            function onScrollViewHandler() {
+                var minimize = getScrollTop() >= playerOffsetTop + playerHeight;
+                document.getElementById('player').classList.toggle('player-minimize', minimize);
+            }
+
+            var isScrollTimeout = false;
+            // window onscroll event handler
+            window.onscroll = function () {
+                // skip if we're waiting on a scroll update timeout to finish
+                if (isScrollTimeout) return;
+                // flag that a new timeout will begin
+                isScrollTimeout = true;
+                // otherwise, call scroll event view handler
+                onScrollViewHandler();
+                // set new timeout
+                setTimeout(function () {
+                    // reset timeout flag to false (no longer waiting)
+                    isScrollTimeout = false;
+                }, 80);
+            };
+        }
+    );
+</script>
