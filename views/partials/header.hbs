@@ -1,0 +1,45 @@
+<header>
+    <h1>Demo Uiza</h1>
+    <section id="Navver">
+        <div class="container">
+            <ul class="nav nav-pills justify-content-end">
+                <li class="nav-item">
+                    {{#ifTypes active 0}}
+                    <a class="nav-link active" href="/">Home</a>
+                    {{else}}
+                    <a class="nav-link" href="/">Home</a>
+                    {{/ifTypes}}
+                </li>
+
+                <li class="nav-item">
+                    {{#ifTypes active 1}}
+                    <a class="nav-link active" href="/entity">Video</a>
+                    {{else}}
+                    <a class="nav-link" href="/entity">Video</a>
+                    {{/ifTypes}}
+                </li>
+                <li class="nav-item">
+                    {{#ifTypes active 2}}
+                    <a class="nav-link active" href="/category">Category</a>
+                    {{else}}
+                    <a class="nav-link" href="/category">Category</a>
+                    {{/ifTypes}}
+                </li>
+                <li class="nav-item">
+                    {{#ifTypes active 3}}
+                    <a class="nav-link active" href="/livestream">Livestream</a>
+                    {{else}}
+                    <a class="nav-link" href="/livestream">Livestream</a>
+                    {{/ifTypes}}
+                </li>
+                <li class="nav-item">
+                    {{#ifTypes active 4}}
+                    <a class="nav-link active" href="/userManagement">Storages</a>
+                    {{else}}
+                    <a class="nav-link" href="/userManagement">Storages</a>
+                    {{/ifTypes}}
+                </li>
+            </ul>
+        </div>
+    </section>
+</header>

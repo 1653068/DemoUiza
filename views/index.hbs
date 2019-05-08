@@ -1,77 +1,16 @@
-!
 <div class="container">
-  <div class="row">
-    <div class="gallery col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <h1 class="gallery-title">Gallery</h1>
-    </div>
-  </div>
-  <div class="row">
-    <div align="center">
-      <button class="btn btn-default filter-button" data-filter="all">All</button>
-      <button class="btn btn-default filter-button" data-filter="hdpe">HDPE Pipes</button>
-      <button class="btn btn-default filter-button" data-filter="sprinkle">Sprinkle Pipes</button>
-      <button class="btn btn-default filter-button" data-filter="spray">Spray Nozzle</button>
-      <button class="btn btn-default filter-button" data-filter="irrigation">Irrigation Pipes</button>
-    </div>
-  </div>
-  <br />
-  <div class="row">
-    <div class="gallery_product col-lg-4 col-md-4 col-sm-6 col-xs-12 filter hdpe">
-      <iframe id="iframe-90458b03-d0c2-4e4d-a88c-06462fb032d4" width="100%" height="100%"
-        src="https://sdk.uiza.io/#/a92a4506195d429b8bd992abfa7b93e0/publish/90458b03-d0c2-4e4d-a88c-06462fb032d4/embed?iframeId=iframe-90458b03-d0c2-4e4d-a88c-06462fb032d4&env=prod&version=4&api=YXAtc291dGhlYXN0LTEtYXBpLnVpemEuY28=&playerId=45a06de9-cf03-4643-b8e4-9a8f28b6bdd5"
-        frameborder="0" allowfullscreen="allowfullscreen" webkitallowfullscreen="webkitallowfullscreen"
-        mozallowfullscreen="mozallowfullscreen" allow="autoplay; fullscreen; encrypted-media"></iframe>
-    </div>
-
-    <div class="gallery_product col-lg-4 col-md-4 col-sm-6 col-xs-12 filter sprinkle">
-      <iframe id="iframe-3fa3635a-4839-4dde-9d53-28ae732dcce8" width="100%" height="100%"
-        src="https://sdk.uiza.io/#/a92a4506195d429b8bd992abfa7b93e0/publish/3fa3635a-4839-4dde-9d53-28ae732dcce8/embed?iframeId=iframe-3fa3635a-4839-4dde-9d53-28ae732dcce8&env=prod&version=4&api=YXAtc291dGhlYXN0LTEtYXBpLnVpemEuY28=&playerId=45a06de9-cf03-4643-b8e4-9a8f28b6bdd5"
-        frameborder="0" allowfullscreen="allowfullscreen" webkitallowfullscreen="webkitallowfullscreen"
-        mozallowfullscreen="mozallowfullscreen" allow="autoplay; fullscreen; encrypted-media"></iframe>
-    </div>
-
-    <div class="gallery_product col-lg-4 col-md-4 col-sm-6 col-xs-12 filter hdpe">
-      <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-    </div>
-
-    <div class="gallery_product col-lg-4 col-md-4 col-sm-6 col-xs-12 filter irrigation">
-      <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-    </div>
-
-    <div class="gallery_product col-lg-4 col-md-4 col-sm-6 col-xs-12 filter spray">
-      <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-    </div>
-
-    <div class="gallery_product col-lg-4 col-md-4 col-sm-6 col-xs-12 filter irrigation">
-      <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-    </div>
-
-    <div class="gallery_product col-lg-4 col-md-4 col-sm-6 col-xs-12 filter spray">
-      <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-    </div>
-
-    <div class="gallery_product col-lg-4 col-md-4 col-sm-6 col-xs-12 filter irrigation">
-      <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-    </div>
-
-    <div class="gallery_product col-lg-4 col-md-4 col-sm-6 col-xs-12 filter irrigation">
-      <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-    </div>
-
-    <div class="gallery_product col-lg-4 col-md-4 col-sm-6 col-xs-12 filter hdpe">
-      <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-    </div>
-
-    <div class="gallery_product col-lg-4 col-md-4 col-sm-6 col-xs-12 filter spray">
-      <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-    </div>
-
-    <div class="gallery_product col-lg-4 col-md-4 col-sm-6 col-xs-12 filter sprinkle">
-      <img src="http://fakeimg.pl/365x365/" class="img-responsive">
+  <h4>All Videos</h4>
+  <div class="container-fluid" id="inventory">
+    <div class="row">
+      {{#each entityList}}
+      <div class="col-md-3">
+        <div class="card">
+          <img class="img-fluid" src="{{thumbnail}}" alt="Card image cap">
+          <a href="/entity/{{id}}" class="btn view-btn">{{name}}</a>
+          <div class="ribbon"><span>{{type}}</span></div>
+        </div>
+      </div>
+      {{/each}}
     </div>
   </div>
 </div>
-
-<script>
-  UZ.Player('iframe-90458b03-d0c2-4e4d-a88c-06462fb032d4').aspectRatio();
-</script>

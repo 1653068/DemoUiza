@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+        <h3>Videos</h3>
+    </div>
+
+    <div class="container-fluid" id="inventory">
+        <div class="row">
+            {{#each entityList}}
+            <div class="col-md-3">
+                <div class="card">
+                    <img class="img-fluid" src="{{thumbnail}}" alt="Card image cap">
+                    <a href="/entity/{{id}}" class="btn view-btn">{{name}}</a>
+                    <div class="ribbon"><span>{{type}}</span></div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+    <script>
+
+    </script>
