@@ -10,6 +10,7 @@ let morgan = require('morgan');
 const uiza = require('uiza');
 var Handlebars = require('handlebars');
 var MomentHandler = require("handlebars.moment");
+var paginate = require('express-handlebars-paginate');
 
 MomentHandler.registerHelpers(Handlebars);
 
@@ -26,7 +27,10 @@ app.engine('hbs', hbs({
     extname: 'hbs',
     defaultLayout: 'layout',
     layoutsDir: __dirname + '/views/layouts',
-    partialsDir: __dirname + '/views/partials'
+    partialsDir: __dirname + '/views/partials',
+    helpers: {
+        paginate: paginate.createPagination
+    }
 }));
 
 app.set('view engine', 'hbs');
@@ -41,10 +45,10 @@ let homeRoute = require('./routes/home');
 app.use('/', homeRoute);
 let entityRoute = require('./routes/entity');
 app.use('/entity', entityRoute);
-// let categoryRoute = require('./routes/category');
-// app.use('/category', categoryRoute);
-// let livestreamRoute = require('./routes/livestream');
-// app.use('/livestream', livestreamRoute);
+let categoryRoute = require('./routes/category');
+app.use('/category', categoryRoute);
+let livestreamRoute = require('./routes/livestream');
+app.use('/livestream', livestreamRoute);
 // let userManagementRoute = require('./routes/userManagement');
 // app.use('/userManagement', userManagementRoute);
 

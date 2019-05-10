@@ -1,9 +1,12 @@
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/style.js"></script>
+
 <header>
     <h1>Demo Uiza</h1>
-    <section id="Navver">
-        <div class="container">
-            <ul class="nav nav-pills justify-content-end">
-                <li class="nav-item">
+    <div class="container">
+        <nav>
+            <ul class="nav dropdown">
+                <li>
                     {{#ifTypes active 0}}
                     <a class="nav-link active" href="/">Home</a>
                     {{else}}
@@ -11,28 +14,44 @@
                     {{/ifTypes}}
                 </li>
 
-                <li class="nav-item">
+                <li class="drop">
                     {{#ifTypes active 1}}
                     <a class="nav-link active" href="/entity">Video</a>
                     {{else}}
                     <a class="nav-link" href="/entity">Video</a>
                     {{/ifTypes}}
+                    <ul class="sub-menu">
+                        <li><a href="/create">Create</a></li>
+                        <li><a href="/update">Update</a></li>
+                        <li><a href="/delete">Delete</a></li>
+                    </ul>
                 </li>
-                <li class="nav-item">
+                <li class="drop">
                     {{#ifTypes active 2}}
                     <a class="nav-link active" href="/category">Category</a>
                     {{else}}
                     <a class="nav-link" href="/category">Category</a>
                     {{/ifTypes}}
+                    <ul class="sub-menu">
+                        <li><a href="/create">Create</a></li>
+                        <li><a href="/update">Update</a></li>
+                        <li><a href="/delete">Delete</a></li>
+                    </ul>
                 </li>
-                <li class="nav-item">
+                <li class="drop">
                     {{#ifTypes active 3}}
                     <a class="nav-link active" href="/livestream">Livestream</a>
                     {{else}}
                     <a class="nav-link" href="/livestream">Livestream</a>
                     {{/ifTypes}}
+                    <ul class="sub-menu">
+                        <li><a href="/createEvent">Create event</a></li>
+                        <li><a href="/retrieveEvent">Retrieve event</a></li>
+                        <li><a href="/updateEvent">Update event</a></li>
+                        <li><a href="/listRecodedFiles">List recoded files</a></li>
+                    </ul>
                 </li>
-                <li class="nav-item">
+                <li class="drop">
                     {{#ifTypes active 4}}
                     <a class="nav-link active" href="/userManagement">Storages</a>
                     {{else}}
@@ -40,6 +59,6 @@
                     {{/ifTypes}}
                 </li>
             </ul>
-        </div>
-    </section>
+        </nav>
+    </div>
 </header>

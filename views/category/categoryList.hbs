@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row">
+        <h3>Categories</h3>
+    </div>
+
+    <div class="container-fluid" id="inventory">
+        <div class="row h-100">
+            {{#each categoryList}}
+            <div class="col-md-3">
+                <div class="card">
+                    <img class="img-fluid" src="{{icon}}" alt="Card image cap">
+                    <a href="/category/{{id}}" class="btn view-btn">{{name}}</a>
+                    <div class="ribbon"><span>{{type}}</span></div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+<script>
+
+</script>

@@ -1,25 +1,30 @@
+<script src='https://sdk.uiza.io/uizaplayer.js'></script>
 <!-- The video player will prepend the player into this <div> tag. You should create css style for this tag -->
-<div id='player'>
+<br>
+<div id='player' style="height:450px; width: 600px;" class="container {{entity.id}}">
     <!-- You can define any HTML tag into here and create css style for those as your UI -->
     <div class='controls'>
-        <div class='button' onclick='/*do something with player playback API*/'>Play/Pause</div>
-        <div class='button' onclick='/*do something with player playback API*/'>On/Off fullscreen</div>
+        <button class='btn' onclick=''>Play/Pause</button>
+        <button class='btn' onclick=''>On/Off fullscreen</button>
         <!-- and more... -->
     </div>
 </div>
 
+
 <script>
     // This code creates an UIZA player without controls, and return the player for the callback
+    var entityId = document.getElementById('player').getAttribute('class').split(' ')[1];
+    console.log("TCL: entityId", entityId);
     UZ.Player.init(
         '#player', // player element, exp: #element_id, .element_class
         {
-            api: btoa('https://dashboard.uiza.io/appId/'),
-            appId: 'uap-a92a4506195d429b8bd992abfa7b93e0-efbeefc1',
+            api: btoa('uap-a92a4506195d429b8bd992abfa7b93e0-efbeefc1'),
+            appId: 'a92a4506195d429b8bd992abfa7b93e0',
             playerVersion: 4, // you are using the newest player, the version is: 3
-            entityId: Handlebars.complie(entity.id),
+            entityId: entityId,
             width: '100%', // player width, percentage or pixel, exp: '400px'
             height: '100%', // player height, percentage or pixel, exp: '200px'
-            controls: false, // to hide the player's controls
+            controls: true, // to hide the player's controls
         },
         function (player) {
             // You can add event listeners at here
@@ -29,6 +34,11 @@
             player.on('pause', function () {
                 console.log('pause');
             });
+            player.aspectRatio();
+			console.log("TCL: player.aspectRatio()", player.aspectRatio());
         }
-    );
+    )
 </script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>

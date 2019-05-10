@@ -1,5 +1,5 @@
 <div class="container">
-  <h4>All Videos</h4>
+  <h4>All videos</h4>
   <div class="container-fluid" id="inventory">
     <div class="row">
       {{#each entityList}}
@@ -11,6 +11,18 @@
         </div>
       </div>
       {{/each}}
+    </div>
+  </div>
+
+  <div class="col-md-8" style="margin: auto">
+    <div class="container py-4">
+      <div class="container py-4">
+        <div class="row">
+          <div class="col-md-12" style="padding-top: 30px; margin: auto">
+            {{{ paginate ./pagination leftText="Prev" rightText="Next" limit="5"}}}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
