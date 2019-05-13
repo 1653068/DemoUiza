@@ -4,22 +4,30 @@ let fs = require("fs");
 const path = require("path");
 const multer = require("multer");
 
-//Set Storage engine
-const storage = multer.diskStorage({
-  destination: "./public/img/",
-  filename: (req, file, cb) => {
-    cb(null,file.fieldname + "-" + Date.now() + path.extname(file.originalname));
-  }
-});
-
-//Init upload
-const upload = multer({
-  storage: storage
-}).single("poster");
-
 controller.livestream = (req, res) => {
   res.locals.active = 3;
-  res.render("livestream/livestream");
+  Uiza.live
+    .retrieve()
+    .then(liveList => {
+      res.locals.livestreamList = liveList;
+      res.render("livestream/livestream");
+    })
+    .catch(err => {
+      res.json(err);
+    });
+};
+
+controller.listRecordFile = (req, res) => {
+  res.locals.active = 3;
+  Uiza.live
+    .list_recorded()
+    .then(recordedList => {
+      res.locals.recordedList = recordedList;
+      res.render("livestream/listRecordFile");
+    })
+    .catch(err => {
+      res.json(err);
+    });
 };
 
 controller.getCreateEvent = (req, res) => {
@@ -42,8 +50,8 @@ controller.postCreateEvent = (req, res) => {
         encode: parseInt(req.body.encode, 10),
         dvr: parseInt(req.body.dvr, 10),
         description: req.body.description,
-        poster: req.file.path,
-        thumbnail: req.file.path,
+        poster: req.body.poster,
+        thumbnail: req.body.poster,
         linkStream: [req.body.linkStream],
         resourceMode: "single"
       };
@@ -51,10 +59,6 @@ controller.postCreateEvent = (req, res) => {
       Uiza.live
         .create(param)
         .then(live => {
-          let data = JSON.stringify(live);
-          fs.writeFileSync(__dirname + "livestream.txt", data);
-          console.log(live);
-          console.log(req.file.path);
           res.redirect("/livestream/createEvent");
         })
         .catch(err => {
@@ -62,6 +66,22 @@ controller.postCreateEvent = (req, res) => {
         });
     }
   });
+};
+
+controller.retrieveLivestream = (req, res) => {
+  res.locals.active = 3;
+  const param = {
+    id: req.params.id
+  };
+  Uiza.live
+    .retrieve(param)
+    .then(live => {
+      res.locals.retrieveLive = live;
+      res.render("livestream/retrieveLivestream");
+    })
+    .catch(err => {
+      res.json(err);
+    });
 };
 
 module.exports = controller;

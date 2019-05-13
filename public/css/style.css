@@ -215,7 +215,7 @@ form input.form-input-chossefile {
 }
 
 form select {
-  width: 60px;
+  width: 80px;
   height: 40px;
   padding: 5px;
   margin: 5px;

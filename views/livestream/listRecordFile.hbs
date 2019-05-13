@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row">
+        <h4>Videos</h4>
+    </div>
+    <style>
+
+    </style>
+
+    <div class="container-fluid" id="inventory">
+        <div class="row">
+            {{#each recordedList}}
+            <div class="container">
+                <div style="padding:5px;margin:5px; border: 1px blue solid; border-radius: 12px">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span>Name: <a href="/livestream/{{id}}">{{entityName}}</a></span><br>
+                        </div>
+                        <div class="col-md-8">
+                            <span>Channel name: {{channelName}}</span><br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span>Start time: {{startTime}}</span><br>
+                        </div>
+                        <div class="col-md-4">
+                            <span>End time: {{endTime}}</span><br>
+                        </div>
+                        <div class="col-md-4">
+                            <span>Duration: {{length}}s</span><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>

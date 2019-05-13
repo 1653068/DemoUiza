@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <h4>Livestream events</h4>
+    </div>
+
+    <div class="container-fluid" id="inventory">
+        <div class="row">
+            {{#each livestreamList}}
+            <div class="col-md-3">
+                <div class="card">
+                    <img class="img-fluid" src="{{poster}}" alt="Card image cap">
+                    <a href="/livestream/{{id}}" class="btn view-btn">{{name}}</a>
+                    <div class="ribbon"><span>{{mode}}</span></div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
