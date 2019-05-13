@@ -2,8 +2,8 @@
 <script src="/js/style.js"></script>
 
 <header>
-    <h1>Demo Uiza</h1>
-    <div class="container">
+    <h1 style="color:blue">Demo Uiza</h1>
+    <div class="container" style="margin-top: 20px; margin-bottom: 20px">
         <nav>
             <ul class="nav dropdown">
                 <li>
@@ -14,29 +14,19 @@
                     {{/ifTypes}}
                 </li>
 
-                <li class="drop">
+                <li>
                     {{#ifTypes active 1}}
                     <a class="nav-link active" href="/entity">Video</a>
                     {{else}}
                     <a class="nav-link" href="/entity">Video</a>
                     {{/ifTypes}}
-                    <ul class="sub-menu">
-                        <li><a href="/entity/create">Create</a></li>
-                        <li><a href="/entity/update">Update</a></li>
-                        <li><a href="/entity/delete">Delete</a></li>
-                    </ul>
                 </li>
-                <li class="drop">
+                <li>
                     {{#ifTypes active 2}}
                     <a class="nav-link active" href="/category">Category</a>
                     {{else}}
                     <a class="nav-link" href="/category">Category</a>
                     {{/ifTypes}}
-                    <ul class="sub-menu">
-                        <li><a href="/category/create">Create</a></li>
-                        <li><a href="/category/update">Update</a></li>
-                        <li><a href="/category/delete">Delete</a></li>
-                    </ul>
                 </li>
                 <li class="drop">
                     {{#ifTypes active 3}}
@@ -50,13 +40,6 @@
                         <li><a href="/livestream/updateEvent">Update event</a></li>
                         <li><a href="/livestream/listRecodedFiles">List recoded files</a></li>
                     </ul>
-                </li>
-                <li class="drop">
-                    {{#ifTypes active 4}}
-                    <a class="nav-link active" href="/userManagement">Storages</a>
-                    {{else}}
-                    <a class="nav-link" href="/userManagement">Storages</a>
-                    {{/ifTypes}}
                 </li>
             </ul>
         </nav>

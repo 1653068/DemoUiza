@@ -1,26 +1,24 @@
-<div class="container">
-  <h4>All videos</h4>
-  <div class="container-fluid" id="inventory">
-    <div class="row">
-      {{#each entityList}}
-      <div class="col-md-3">
-        <div class="card">
-          <img class="img-fluid" src="{{thumbnail}}" alt="Card image cap">
-          <a href="/entity/{{id}}" class="btn view-btn">{{name}}</a>
-          <div class="ribbon"><span>{{type}}</span></div>
-        </div>
+<h4>All videos</h4>
+<div class="container-fluid" id="inventory">
+  <div class="row">
+    {{#each entityList}}
+    <div class="col-md-3">
+      <div class="card">
+        <img class="img-fluid" src="{{thumbnail}}" alt="Card image cap">
+        <a href="/entity/{{id}}" class="btn view-btn">{{name}}</a>
+        <div class="ribbon"><span>{{type}}</span></div>
       </div>
-      {{/each}}
     </div>
+    {{/each}}
   </div>
+</div>
 
-  <div class="col-md-8" style="margin: auto">
+<div class="col-md-8" style="margin: auto">
+  <div class="container py-4">
     <div class="container py-4">
-      <div class="container py-4">
-        <div class="row">
-          <div class="col-md-12" style="padding-top: 30px; margin: auto">
-            {{{ paginate ./pagination leftText="Prev" rightText="Next" limit="5"}}}
-          </div>
+      <div class="row">
+        <div class="col-md-12" style="padding-top: 30px; margin: auto">
+          {{{ paginate ./pagination leftText="Prev" rightText="Next" limit="5"}}}
         </div>
       </div>
     </div>

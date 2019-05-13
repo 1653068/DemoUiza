@@ -32,19 +32,4 @@ controller.viewEntity = (req, res) => {
     });
 };
 
-controller.createEntity = (req, res) => {
-  res.locals.active = 1;
-  res.render('entity/createEntity');
-};
-
-controller.updateEntity = (req, res) => {
-  res.locals.active = 1;
-  res.render('entity/updateEntity');
-};
-
-controller.deleteEntity = (req, res) => {
-  res.locals.active = 1;
-  res.render('entity/deleteEntity');
-};
-
 module.exports = controller;

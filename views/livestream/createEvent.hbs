@@ -1,0 +1,73 @@
+<h4 style="color: red; right:20%">Create livestream</h4>
+<div class="container">
+    {{#if msg}}
+    <div>{{msg}}</div>
+    {{/if}}
+    <form action="/livestream/createEvent" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-4">
+                <label for="" class="label-info">Name: </label>
+            </div>
+            <div class="col-md-8">
+                <input class="form-input" type="text" name="name" required><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label for="" class="label-info">Mode: </label>
+            </div>
+            <div class="col-md-8">
+                <select class="" name="mode" required>
+                    <option value="pull">Pull</option>
+                    <option value="push">Push</option>
+                </select><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label for="" class="label-info">Encode: </label>
+            </div>
+            <div class="col-md-8">
+                <select class="" name="encode" required>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label for="" class="label-info">DVR: </label>
+            </div>
+            <div class="col-md-8">
+                <select class="" name="dvr" required>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label for="" class="label-info">Description:</label>
+            </div>
+            <div class="col-md-8">
+                <input class="form-input" type="text" name="description"><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label class="label-info">Poster: </label>
+            </div>
+            <div class="col-md-8">
+                <input id="chossefile" class="form-input-chossefile" type="file" name="poster"><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4"><label class="label-info">Link stream: </label>
+            </div>
+            <div class="col-md-8">
+                <input class="form-input" type="text" name="linkStream"><br>
+            </div>
+        </div>
+        <input class="btn btn-primary" type="submit" value="Submit"><br>
+    </form>
+</div>
