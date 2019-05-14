@@ -10,6 +10,7 @@ controller.livestream = (req, res) => {
     .retrieve()
     .then(liveList => {
       res.locals.livestreamList = liveList;
+			console.log("TCL: controller.livestream -> liveList", liveList);
       res.render("livestream/livestream");
     })
     .catch(err => {
@@ -37,35 +38,26 @@ controller.getCreateEvent = (req, res) => {
 
 controller.postCreateEvent = (req, res) => {
   res.locals.active = 3;
+  const param = {
+    name: req.body.name,
+    mode: req.body.mode,
+    encode: parseInt(req.body.encode, 10),
+    dvr: parseInt(req.body.dvr, 10),
+    description: req.body.description,
+    poster: req.body.poster,
+    thumbnail: req.body.poster,
+    linkStream: [req.body.linkStream],
+    resourceMode: "single"
+  };
 
-  upload(req, res, err => {
-    if (err) {
-      res.render("livestream/createEvent", {
-        msg: err
-      });
-    } else {
-      const param = {
-        name: req.body.name,
-        mode: req.body.mode,
-        encode: parseInt(req.body.encode, 10),
-        dvr: parseInt(req.body.dvr, 10),
-        description: req.body.description,
-        poster: req.body.poster,
-        thumbnail: req.body.poster,
-        linkStream: [req.body.linkStream],
-        resourceMode: "single"
-      };
-
-      Uiza.live
-        .create(param)
-        .then(live => {
-          res.redirect("/livestream/createEvent");
-        })
-        .catch(err => {
-          res.json(err);
-        });
-    }
-  });
+  Uiza.live
+    .create(param)
+    .then(live => {
+      res.redirect("/livestream/" + live.id);
+    })
+    .catch(err => {
+      res.json(err);
+    });
 };
 
 controller.retrieveLivestream = (req, res) => {

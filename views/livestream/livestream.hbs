@@ -8,7 +8,11 @@
             {{#each livestreamList}}
             <div class="col-md-3">
                 <div class="card">
+                    {{#ifTypes poster ''}}
+                    <img class="img-fluid" src="../../public/img/playlist.jpeg" alt="Card image cap">
+                    {{else}}
                     <img class="img-fluid" src="{{poster}}" alt="Card image cap">
+                    {{/ifTypes}}
                     <a href="/livestream/{{id}}" class="btn view-btn">{{name}}</a>
                     <div class="ribbon"><span>{{mode}}</span></div>
                 </div>
