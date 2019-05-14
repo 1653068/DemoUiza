@@ -10,7 +10,6 @@ controller.livestream = (req, res) => {
     .retrieve()
     .then(liveList => {
       res.locals.livestreamList = liveList;
-			console.log("TCL: controller.livestream -> liveList", liveList);
       res.render("livestream/livestream");
     })
     .catch(err => {

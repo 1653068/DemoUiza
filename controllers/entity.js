@@ -24,7 +24,6 @@ controller.viewEntity = (req, res) => {
     .then(entity => {
       res.locals.entity = entity;
       res.locals.active = 1;
-      console.log(entity);
       res.render("entity/playAVideo");
     })
     .catch(err => {
