@@ -1,8 +1,7 @@
 <script src='https://sdk.uiza.io/uizaplayer.js'></script>
 <!-- The video player will prepend the player into this <div> tag. You should create css style for this tag -->
 <br>
-<div id='player' style="height:450px; width: 600px;" class="container">
-
+<div id='player' style="height:450px; width: 600px;" class="container {{livestream.id}}">
     <!-- You can define any HTML tag into here and create css style for those as your UI -->
     <div class='controls'>
         <button class='btn' onclick=''>Play/Pause</button>
@@ -14,16 +13,15 @@
 
 <script>
     // This code creates an UIZA player without controls, and return the player for the callback
-
-    var id = {{{json entity.id}}}
-
+    var entityId = document.getElementById('player').getAttribute('class').split(' ')[1];
+    console.log("TCL: entityId", entityId);
     UZ.Player.init(
         '#player', // player element, exp: #element_id, .element_class
         {
             api: btoa('uap-a92a4506195d429b8bd992abfa7b93e0-efbeefc1'),
             appId: 'a92a4506195d429b8bd992abfa7b93e0',
             playerVersion: 4, // you are using the newest player, the version is: 3
-            entityId: id,
+            entityId: entityId,
             width: '100%', // player width, percentage or pixel, exp: '400px'
             height: '100%', // player height, percentage or pixel, exp: '200px'
             controls: true, // to hide the player's controls

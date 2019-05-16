@@ -75,4 +75,36 @@ controller.retrieveLivestream = (req, res) => {
     });
 };
 
+controller.startLivestream = (req, res) => {
+  res.local.active = 3;
+  const param = {
+    id: req.body.id
+  };
+  Uiza.live
+    .start_feed(param)
+    .then(live => {
+      res.local.livestream = live;
+      res.render("livestream/playlivestream");
+    })
+    .catch(err => {
+      res.json(err);
+    });
+};
+
+controller.stopLivestream = (req, res) => {
+  res.local.active = 3;
+  const param = {
+    id: req.body.id
+  };
+  Uiza.live
+    .stop_feed(param)
+    .then(live => {
+      res.local.stop_feed = live;
+      res.redirect("livestream/retrieveLivestream");
+    })
+    .catch(err => {
+      res.json(err);
+    });
+};
+
 module.exports = controller;

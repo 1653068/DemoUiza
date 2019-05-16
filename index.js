@@ -1,6 +1,7 @@
 var express = require("express");
 var app = express();
 let hbs = require("express-handlebars");
+var paginate = require("express-handlebars-paginate");
 let bodyParser = require("body-parser");
 let https = require("https");
 let http = require("http");
@@ -8,15 +9,9 @@ let path = require("path");
 let fs = require("fs");
 let morgan = require("morgan");
 const uiza = require("uiza");
-var Handlebars = require("handlebars");
-var MomentHandler = require("handlebars.moment");
-var paginate = require("express-handlebars-paginate");
+let handlebarsHelper = require('./controllers/handlebarHelper');
 
-MomentHandler.registerHelpers(Handlebars);
 
-Handlebars.registerHelper("inc", function(value, options) {
-  return parseInt(value) + 1;
-});
 var key = fs.readFileSync(__dirname + "/key.txt", "utf-8");
 app.use(morgan("dev"));
 uiza.authorization(key);
@@ -56,12 +51,7 @@ app.use("/livestream", livestreamRoute);
 // let userManagementRoute = require('./routes/userManagement');
 // app.use('/userManagement', userManagementRoute);
 
-Handlebars.registerHelper("ifTypes", function(v1, v2, options) {
-  if (v1 == v2) {
-    return options.fn(this);
-  }
-  return options.inverse(this);
-});
+
 
 app.listen(app.get("port"), function() {
   console.log("server is  listening on port " + app.get("port"));

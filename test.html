@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./public/css/style.css">
+</head>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+</script>
+<script>
+    $(document).ready(() => {
+        $("#start").click(() => {
+            var a = $("#start");
+            if (a.text() == 'Start') {
+                a.text('Stop');
+                a.removeClass('btn-start');
+                a.addClass('btn-stop');
+            } else {
+                a.text('Start');
+                a.removeClass('btn-stop');
+                a.addClass('btn-start');
+            }
+        });
+    })
+</script>
+
+<body>
+    <h4>Event detail</h4>
+    <div class="container">
+        <div class="livestream-event">
+            <img src="./public/img/folder.jpg" alt="Poster">
+            <span>Name</span>
+            <div class="ribbon"><span>mode</span></div>
+        </div>
+        <div class="livestream-button">
+            <div class="button-container">
+                <button id="start" class="btn btn-start">Start</button>
+                <button class="btn btn-dark">Update</button>
+                <button class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
