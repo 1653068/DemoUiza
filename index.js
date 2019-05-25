@@ -59,5 +59,5 @@ app.use("/livestream", livestreamRoute);
 
 app.listen(app.get("port"), function() {
   console.log("server is  listening on port " + app.get("port"));
-  open('http://localhost:5000/');
+  // open('http://localhost:5000/');
 });
