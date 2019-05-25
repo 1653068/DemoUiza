@@ -3,11 +3,17 @@ let controller = require("../controllers/livestream");
 let router = express.Router();
 
 router.get("/", controller.livestream);
-router.get("/createEvent", controller.getCreateEvent);
-router.post("/createEvent", controller.postCreateEvent);
-router.get("/listRecodedFiles", controller.listRecordFile);
-router.get("/:id", controller.retrieveLivestream);
-router.post(":/id", controller.startLivestream);
-router.put(":/id", controller.stopLivestream);
+router.get("/event", controller.getCreateEvent);
+router.post("/event", controller.postCreateEvent);
+router.get("/recodedFiles", controller.listRecordFile);
+router
+  .route("/event/:id")
+  .get(controller.retrieveLivestream)
+  .post(controller.startLivestream)
+  .put(controller.stopLivestream)
+  .delete(controller.deleteLivestream);
+
+// router.delete("/event/delete/:id?_method=DELETE",controller.deleteLivestream);
+router.get("/playlivestream/:id", controller.playALivestream);
 
 module.exports = router;

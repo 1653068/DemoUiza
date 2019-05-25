@@ -1,7 +1,9 @@
 var express = require("express");
 var app = express();
+var open = require('open');
 let hbs = require("express-handlebars");
 var paginate = require("express-handlebars-paginate");
+const methodOverride = require('method-override');
 let bodyParser = require("body-parser");
 let https = require("https");
 let http = require("http");
@@ -31,12 +33,14 @@ app.engine(
 );
 
 app.set("view engine", "hbs");
+app.use(methodOverride('_method'));
 app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
     extended: false
   })
 );
+
 
 app.set("port", process.env.PORT || 5000);
 
@@ -55,4 +59,5 @@ app.use("/livestream", livestreamRoute);
 
 app.listen(app.get("port"), function() {
   console.log("server is  listening on port " + app.get("port"));
+  open('http://localhost:5000/');
 });

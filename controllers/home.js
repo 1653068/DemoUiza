@@ -5,7 +5,6 @@ controller.homepage = (req, res) => {
   Uiza.entity
     .list()
     .then(elist => {
-			console.log("TCL: controller.homepage -> elist", elist)
       let page = req.query.page || 1;
       let pageLimit = 4;
       let offset = (page - 1) * pageLimit;

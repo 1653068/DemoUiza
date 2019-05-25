@@ -1,4 +1,4 @@
-<script>
+{{!-- <script>
     $(document).ready(() => {
         $("#start").click(() => {
             var a = $("#start");
@@ -13,7 +13,7 @@
             }
         });
     })
-</script>
+</script> --}}
 
 <h4>Event detail</h4>
 <div class="container">
@@ -21,18 +21,24 @@
         {{#if retrieveLive.poster}}
         <img src="{{retrieveLive.poster}}" alt="Poster">
         {{else}}
-        <img src="./public/img/folder.jpg" alt="Poster">
+        <img src="/img/playlist.jpeg" alt="Poster">
         {{/if}}
         <span>{{retrieveLive.name}}</span>
     </div>
     <div class="livestream-button">
         <div class="button-container">
-            <button id="start" class="btn btn-start">Start</button>
+            <form action="/livestream/event/{{retrieveLive.id}}" method="post">
+                <input type="hidden" name="id" value="{{retrieveLive.id}}">
+                <input type="submit" class="btn btn-start" value="Start"></input>
+            </form>
             <button class="btn btn-dark">Update</button>
-            <button class="btn btn-danger">Delete</button>
+            <form method="POST" action="/livestream/event/{{retrieveLive.id}}?_method=DELETE">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="submit" class="btn btn-danger" value="Delete"></input>
+            </form>
         </div>
     </div>
 </div>
 <div>
-    <a href="/livestream/{{retrieveLive.id}}"></a>
+    <a href="/livestream/event/{{retrieveLive.id}}"></a>
 </div>

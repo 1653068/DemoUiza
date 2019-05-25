@@ -10,6 +10,7 @@ controller.livestream = (req, res) => {
     .retrieve()
     .then(liveList => {
       res.locals.livestreamList = liveList;
+      // console.log("TCL: controller.livestream -> liveList", liveList);
       res.render("livestream/livestream");
     })
     .catch(err => {
@@ -52,7 +53,8 @@ controller.postCreateEvent = (req, res) => {
   Uiza.live
     .create(param)
     .then(live => {
-      res.redirect("/livestream/" + live.id);
+      console.log("TCL: controller.postCreateEvent -> live.id", param);
+      res.redirect("/livestream/event/" + live.id);
     })
     .catch(err => {
       res.json(err);
@@ -76,15 +78,23 @@ controller.retrieveLivestream = (req, res) => {
 };
 
 controller.startLivestream = (req, res) => {
-  res.local.active = 3;
   const param = {
     id: req.body.id
   };
+
   Uiza.live
     .start_feed(param)
-    .then(live => {
-      res.local.livestream = live;
-      res.render("livestream/playlivestream");
+    .then(feed => {
+      Uiza.live
+        .retrieve(param)
+        .then(live => {
+          console.log("TCL: controller.startLivestream -> live", live);
+          res.redirect("/livestream/playlivestream/" + live.id);
+        })
+        .catch(err => {
+          console.log("TCL: controller.startLivestream -> err", err);
+          res.json(err);
+        });
     })
     .catch(err => {
       res.json(err);
@@ -92,15 +102,51 @@ controller.startLivestream = (req, res) => {
 };
 
 controller.stopLivestream = (req, res) => {
-  res.local.active = 3;
   const param = {
     id: req.body.id
   };
   Uiza.live
     .stop_feed(param)
     .then(live => {
-      res.local.stop_feed = live;
-      res.redirect("livestream/retrieveLivestream");
+      res.locals.stop_feed = live;
+      // console.log("TCL: controller.stopLivestream -> live", live)
+      res.redirect("livestream/");
+    })
+    .catch(err => {
+      res.json(err);
+    });
+};
+
+controller.deleteLivestream = (req, res) => {
+  var param = {
+    id: req.params.id
+  };
+  console.log("TCL: controller.deleteLivestream -> param", param);
+  Uiza.live
+    .delete(param)
+    .then(live => {
+      console.log("TCL: controller.deleteLivestream -> live", live);
+      res.redirect("/livestream");
+    })
+    .catch(err => {
+      res.json(err);
+    });
+};
+
+controller.playALivestream = (req, res) => {
+  var param = {
+    id: req.params.id
+  };
+  console.log("TCL: controller.playALivestream -> param", param);
+
+  Uiza.live
+    .retrieve(param)
+    .then(live => {
+      res.locals.active = 3;
+      res.locals.live = live;
+      res.locals.entityId = param;
+      console.log("TCL: controller.playALivestream -> live", live);
+      res.render("livestream/playLivestream");
     })
     .catch(err => {
       res.json(err);

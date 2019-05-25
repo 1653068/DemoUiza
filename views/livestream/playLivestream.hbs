@@ -1,30 +1,27 @@
 <script src='https://sdk.uiza.io/uizaplayer.js'></script>
-<!-- The video player will prepend the player into this <div> tag. You should create css style for this tag -->
-<br>
-<div id='player' style="height:450px; width: 600px;" class="container {{livestream.id}}">
-    <!-- You can define any HTML tag into here and create css style for those as your UI -->
-    <div class='controls'>
-        <button class='btn' onclick=''>Play/Pause</button>
-        <button class='btn' onclick=''>On/Off fullscreen</button>
-        <!-- and more... -->
-    </div>
+
+<div id='livestream' style="height:450px; width: 600px;" class="container">
+
 </div>
 
 
 <script>
     // This code creates an UIZA player without controls, and return the player for the callback
-    var entityId = document.getElementById('player').getAttribute('class').split(' ')[1];
-    console.log("TCL: entityId", entityId);
+    var live = {{{ json live }}};
+    console.log("TCL: feedId", live);
     UZ.Player.init(
-        '#player', // player element, exp: #element_id, .element_class
+        '#livestream', // player element, exp: #element_id, .element_class
         {
-            api: btoa('uap-a92a4506195d429b8bd992abfa7b93e0-efbeefc1'),
             appId: 'a92a4506195d429b8bd992abfa7b93e0',
-            playerVersion: 4, // you are using the newest player, the version is: 3
-            entityId: entityId,
+            playerId: 'YOUR_PLAYER_ID', // option
+            playerVersion: 4, // you are using the newest player, player version support API version
+            entityId: live.id,
+            streamName: live.channelName,
+            feedId: live.lastFeedId,
+            region: 'ap-southeast-1',
+            userInfo: 'YOUR_END_USER_INFO', // option, suggest this is the user id (for analytics)
             width: '100%', // player width, percentage or pixel, exp: '400px'
             height: '100%', // player height, percentage or pixel, exp: '200px'
-            controls: true, // to hide the player's controls
         },
         function (player) {
             // You can add event listeners at here
@@ -35,10 +32,7 @@
                 console.log('pause');
             });
             player.aspectRatio();
-			console.log("TCL: player.aspectRatio()", player.aspectRatio());
+            console.log("TCL: player.aspectRatio()", player.aspectRatio());
         }
     )
 </script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
