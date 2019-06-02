@@ -3,6 +3,7 @@ let controller = {};
 let fs = require("fs");
 const path = require("path");
 const multer = require("multer");
+const { AppId } = require("../config/config.json");
 
 controller.livestream = (req, res) => {
   res.locals.active = 3;
@@ -89,7 +90,7 @@ controller.startLivestream = (req, res) => {
         .retrieve(param)
         .then(live => {
           console.log("TCL: controller.startLivestream -> live", live);
-          res.redirect("/livestream/playlivestream/" + live.id);
+          res.redirect(`/livestream/playlivestream/${live.id}`);
         })
         .catch(err => {
           console.log("TCL: controller.startLivestream -> err", err);
@@ -137,6 +138,9 @@ controller.playALivestream = (req, res) => {
   var param = {
     id: req.params.id
   };
+  var app = {
+    id: AppId
+  }
   console.log("TCL: controller.playALivestream -> param", param);
 
   Uiza.live
@@ -144,7 +148,7 @@ controller.playALivestream = (req, res) => {
     .then(live => {
       res.locals.active = 3;
       res.locals.live = live;
-      res.locals.entityId = param;
+      res.locals.AppId = app;
       console.log("TCL: controller.playALivestream -> live", live);
       res.render("livestream/playLivestream");
     })

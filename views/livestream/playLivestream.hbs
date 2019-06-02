@@ -7,12 +7,12 @@
 
 <script>
     // This code creates an UIZA player without controls, and return the player for the callback
-    var live = {{{ json live }}};
+    var live = {{{ json live }}}, appId = {{{ json AppId }}};
     console.log("TCL: feedId", live);
     UZ.Player.init(
         '#livestream', // player element, exp: #element_id, .element_class
         {
-            appId: 'a92a4506195d429b8bd992abfa7b93e0',
+            appId: appId.id,
             playerId: 'YOUR_PLAYER_ID', // option
             playerVersion: 4, // you are using the newest player, player version support API version
             entityId: live.id,

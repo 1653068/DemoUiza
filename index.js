@@ -1,22 +1,17 @@
 var express = require("express");
 var app = express();
-var open = require('open');
+var open = require("open");
 let hbs = require("express-handlebars");
 var paginate = require("express-handlebars-paginate");
-const methodOverride = require('method-override');
+const methodOverride = require("method-override");
 let bodyParser = require("body-parser");
-let https = require("https");
-let http = require("http");
-let path = require("path");
-let fs = require("fs");
 let morgan = require("morgan");
 const uiza = require("uiza");
-let handlebarsHelper = require('./controllers/handlebarHelper');
+let handlebarsHelper = require("./controllers/handlebarHelper");
+const { ApiKey } = require("./config/config.json");
 
-
-var key = fs.readFileSync(__dirname + "/key.txt", "utf-8");
 app.use(morgan("dev"));
-uiza.authorization(key);
+uiza.authorization(ApiKey);
 app.use(express.static(__dirname + "/public"));
 
 app.engine(
@@ -33,14 +28,13 @@ app.engine(
 );
 
 app.set("view engine", "hbs");
-app.use(methodOverride('_method'));
+app.use(methodOverride("_method"));
 app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
     extended: false
   })
 );
-
 
 app.set("port", process.env.PORT || 5000);
 
@@ -55,9 +49,7 @@ app.use("/livestream", livestreamRoute);
 // let userManagementRoute = require('./routes/userManagement');
 // app.use('/userManagement', userManagementRoute);
 
-
-
 app.listen(app.get("port"), function() {
   console.log("server is  listening on port " + app.get("port"));
-  // open('http://localhost:5000/');
+  open("http://localhost:5000/");
 });
